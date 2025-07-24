@@ -11,19 +11,21 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Type**: Static Single Page Application (SPA)
-- **Structure**: Traditional HTML5 with semantic markup
-- **Styling**: CSS3 with custom properties (CSS variables) for theming
-- **Interactivity**: Vanilla JavaScript with modular approach
-- **Responsive Design**: Mobile-first responsive layout
+- **Type**: Static Single Page Application (SPA) with Flask backend
+- **Structure**: Modern HTML5 with semantic markup
+- **Styling**: Tailwind CSS for utility-first styling with dark/light mode support
+- **Interactivity**: Vanilla JavaScript with modern ES6+ features
+- **Responsive Design**: Mobile-first responsive layout using Tailwind's grid system
 
 ### Technology Stack
 - **HTML5**: Semantic markup structure
-- **CSS3**: Modern styling with custom properties and flexbox/grid
-- **Vanilla JavaScript**: Client-side interactivity and animations
+- **Tailwind CSS**: Utility-first CSS framework with custom primary color theming
+- **Vanilla JavaScript**: Modern client-side interactivity and animations
+- **Flask**: Python backend for serving static files and contact form handling
 - **External Libraries**: 
   - Font Awesome 6.0.0 for icons
   - AOS (Animate On Scroll) library for scroll animations
+  - Tailwind CSS via CDN with custom configuration
 
 ## Key Components
 
@@ -33,9 +35,10 @@ Preferred communication style: Simple, everyday language.
 - **Active Link Highlighting**: Dynamic active state based on scroll position
 
 ### 2. Theme System
-- **Dark/Light Mode**: Toggle-based theme switching
-- **CSS Custom Properties**: Centralized color management for easy theme switching
+- **Dark/Light Mode**: Toggle-based theme switching using Tailwind's dark mode
+- **Tailwind Dark Mode**: Class-based dark mode implementation with system preference detection
 - **Local Storage**: Theme preference persistence across sessions
+- **Custom Colors**: Primary color palette (blue-600) integrated with Tailwind's color system
 
 ### 3. Contact Form
 - **Form Handling**: JavaScript-based form validation and submission
@@ -62,9 +65,10 @@ Preferred communication style: Simple, everyday language.
 
 ### Theme Management Flow
 1. User clicks theme toggle button
-2. JavaScript updates CSS custom properties
-3. Theme preference saved to localStorage
-4. On page load, saved theme preference is applied
+2. JavaScript toggles 'dark' class on document element
+3. Tailwind CSS automatically applies dark mode styles
+4. Theme preference saved to localStorage
+5. On page load, saved theme preference and system preference are detected and applied
 
 ### Navigation Flow
 1. User clicks navigation link or scrolls
@@ -74,13 +78,15 @@ Preferred communication style: Simple, everyday language.
 
 ### Contact Form Flow
 1. User fills out contact form
-2. JavaScript validates form inputs
-3. Form submission handled (implementation pending)
-4. Success/error feedback displayed to user
+2. JavaScript validates form inputs with real-time visual feedback
+3. Form submission handled via Flask backend with PHP contact.php
+4. Loading states and success/error feedback displayed using Tailwind classes
+5. Form reset on successful submission
 
 ## External Dependencies
 
 ### CDN Dependencies
+- **Tailwind CSS 3.4.1**: Main CSS framework via CDN
 - **Font Awesome 6.0.0**: Icon library for UI elements
 - **AOS 2.3.4**: Animate On Scroll library for scroll animations
 
@@ -102,29 +108,41 @@ Preferred communication style: Simple, everyday language.
 - Traditional web hosting
 
 ### Performance Considerations
+- Tailwind CSS purged and optimized via CDN
 - Minimal external dependencies
-- Optimized CSS with custom properties
-- Efficient JavaScript with event delegation
-- Responsive images and lazy loading ready
+- Efficient JavaScript with modern event handling
+- Responsive design with Tailwind's responsive utilities
+- Dark mode implemented without JavaScript theme switching overhead
 
 ## File Structure
 
 ```
 /
-├── index.html                 # Main HTML file
+├── index.html                 # Main HTML file with Tailwind CSS
+├── main.py                    # Flask application entry point
+├── contact.php               # Contact form handler
 ├── assets/
-│   ├── css/
-│   │   └── style.css         # Main stylesheet with CSS variables
 │   └── js/
-│       └── app.js            # Main JavaScript application
+│       └── app.js            # Modern JavaScript with Tailwind integration
 └── attached_assets/
     └── requirements.txt       # Project requirements and specifications
 ```
 
 ## Development Notes
 
-- The website is designed to be easily customizable through CSS custom properties
-- JavaScript is written in a modular, maintainable style
-- The contact form requires backend integration for actual email sending
-- All animations and interactions are performance-optimized
-- The codebase follows modern web development best practices
+- The website uses Tailwind CSS for modern, utility-first styling approach
+- JavaScript is written with modern ES6+ features and Tailwind class manipulation
+- Contact form is integrated with Flask backend for email processing
+- Dark/light mode implemented using Tailwind's native dark mode support
+- All animations use Tailwind transitions combined with AOS library
+- Responsive design achieved through Tailwind's comprehensive responsive utilities
+- The codebase follows modern web development best practices with professional UI/UX
+
+## Recent Changes (January 2025)
+
+- **Complete UI Redesign**: Transformed from basic CSS to modern Tailwind CSS implementation
+- **Professional Styling**: Added gradient backgrounds, modern cards, hover effects, and animations
+- **Enhanced Navigation**: Improved mobile menu with smooth transitions and active state management
+- **Modern Components**: Redesigned hero section, skills cards, project cards, and contact form
+- **Dark Mode Enhancement**: Upgraded to Tailwind's native dark mode system
+- **JavaScript Modernization**: Updated JavaScript to work with Tailwind classes and modern patterns

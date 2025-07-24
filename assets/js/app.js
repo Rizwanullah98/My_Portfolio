@@ -1,4 +1,4 @@
-// Portfolio Website JavaScript
+// Modern Portfolio Website JavaScript with Tailwind CSS
 // Author: Rizwan Ullah
 // Description: Handles navigation, theme toggle, form submission, and animations
 
@@ -7,11 +7,12 @@
 
     // DOM Elements
     const navbar = document.getElementById('navbar');
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
     const themeToggle = document.getElementById('theme-toggle');
     const contactForm = document.getElementById('contact-form');
     const navLinks = document.querySelectorAll('.nav-link');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
     // Initialize the application
     function init() {
@@ -21,16 +22,28 @@
         setupScrollEffects();
         setupAnimations();
         loadThemePreference();
+        setupBackToTop();
     }
 
     // Navigation Functions
     function setupNavigation() {
         // Mobile menu toggle
-        hamburger.addEventListener('click', toggleMobileMenu);
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
 
-        // Close mobile menu when clicking on nav links
+        // Desktop navigation smooth scroll
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                e.preventDefault();
+                smoothScrollToSection(e);
+            });
+        });
+
+        // Mobile navigation smooth scroll and close menu
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
                 closeMobileMenu();
                 smoothScrollToSection(e);
             });
@@ -38,7 +51,7 @@
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!navbar.contains(e.target)) {
+            if (mobileMenu && !navbar.contains(e.target)) {
                 closeMobileMenu();
             }
         });
@@ -48,15 +61,28 @@
     }
 
     function toggleMobileMenu() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        if (mobileMenu) {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Update hamburger icon
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars text-lg';
+                document.body.style.overflow = '';
+            } else {
+                icon.className = 'fas fa-times text-lg';
+                document.body.style.overflow = 'hidden';
+            }
+        }
     }
 
     function closeMobileMenu() {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            icon.className = 'fas fa-bars text-lg';
+            document.body.style.overflow = '';
+        }
     }
 
     function smoothScrollToSection(e) {
@@ -81,11 +107,21 @@
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            const desktopNavLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            const mobileNavLink = document.querySelector(`.mobile-nav-link[href="#${sectionId}"]`);
 
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                if (navLink) navLink.classList.add('active');
+                // Remove active class from all nav links
+                navLinks.forEach(link => link.classList.remove('text-primary-600', 'dark:text-primary-400'));
+                mobileNavLinks.forEach(link => link.classList.remove('text-primary-600', 'dark:text-primary-400'));
+                
+                // Add active class to current section
+                if (desktopNavLink) {
+                    desktopNavLink.classList.add('text-primary-600', 'dark:text-primary-400');
+                }
+                if (mobileNavLink) {
+                    mobileNavLink.classList.add('text-primary-600', 'dark:text-primary-400');
+                }
             }
         });
     }
@@ -96,29 +132,23 @@
     }
 
     function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
         
-        document.documentElement.setAttribute('data-theme', newTheme);
-        updateThemeIcon(newTheme);
-        saveThemePreference(newTheme);
+        if (isDark) {
+            html.classList.remove('dark');
+            saveThemePreference('light');
+        } else {
+            html.classList.add('dark');
+            saveThemePreference('dark');
+        }
         
-        // Add smooth transition
-        document.documentElement.style.transition = 'all 0.3s ease-in-out';
-        setTimeout(() => {
-            document.documentElement.style.transition = '';
-        }, 300);
+        updateThemeIcon(!isDark);
     }
 
-    function updateThemeIcon(theme) {
-        const icon = themeToggle.querySelector('i');
-        if (theme === 'dark') {
-            icon.className = 'fas fa-sun';
-            themeToggle.title = 'Switch to Light Mode';
-        } else {
-            icon.className = 'fas fa-moon';
-            themeToggle.title = 'Switch to Dark Mode';
-        }
+    function updateThemeIcon(isDark) {
+        // Icons are already set up in HTML with Tailwind's dark: modifier
+        // No need to manually toggle classes
     }
 
     function saveThemePreference(theme) {
@@ -128,10 +158,15 @@
     function loadThemePreference() {
         const savedTheme = localStorage.getItem('portfolioTheme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
         
-        document.documentElement.setAttribute('data-theme', theme);
-        updateThemeIcon(theme);
+        if (shouldBeDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        updateThemeIcon(shouldBeDark);
     }
 
     // Contact Form Functions
@@ -155,16 +190,8 @@
             return;
         }
 
-        const submitBtn = document.getElementById('submit-btn');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoader = submitBtn.querySelector('.btn-loader');
-        const formStatus = document.getElementById('form-status');
-
         // Show loading state
         setFormLoading(true);
-        btnText.style.display = 'none';
-        btnLoader.style.display = 'inline-flex';
-        submitBtn.disabled = true;
 
         try {
             const formData = new FormData(contactForm);
@@ -179,6 +206,10 @@
             if (result.success) {
                 showFormStatus('success', result.message || 'Message sent successfully! I\'ll get back to you soon.');
                 contactForm.reset();
+                
+                // Clear any remaining error states
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(input => clearFieldError(input));
             } else {
                 showFormStatus('error', result.message || 'Failed to send message. Please try again.');
             }
@@ -188,9 +219,6 @@
         } finally {
             // Reset button state
             setFormLoading(false);
-            btnText.style.display = 'inline';
-            btnLoader.style.display = 'none';
-            submitBtn.disabled = false;
         }
     }
 
@@ -266,7 +294,9 @@
         const errorElement = document.getElementById(`${field.name}-error`);
         if (errorElement) {
             errorElement.textContent = message;
-            field.style.borderColor = 'var(--error-color)';
+            errorElement.classList.remove('hidden');
+            field.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+            field.classList.remove('border-gray-300', 'dark:border-gray-600', 'focus:border-primary-500', 'focus:ring-primary-500');
         }
     }
 
@@ -274,32 +304,49 @@
         const errorElement = document.getElementById(`${field.name}-error`);
         if (errorElement) {
             errorElement.textContent = '';
-            field.style.borderColor = 'var(--border-color)';
+            errorElement.classList.add('hidden');
+            field.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+            field.classList.add('border-gray-300', 'dark:border-gray-600', 'focus:border-primary-500', 'focus:ring-primary-500');
         }
     }
 
     function showFormStatus(type, message) {
         const formStatus = document.getElementById('form-status');
         if (formStatus) {
-            formStatus.className = `form-status ${type}`;
             formStatus.textContent = message;
-            formStatus.style.display = 'block';
+            formStatus.classList.remove('hidden');
             
-            // Auto-hide success message after 5 seconds
+            // Remove previous status classes
+            formStatus.classList.remove('bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            // Add appropriate classes based on type
             if (type === 'success') {
+                formStatus.classList.add('bg-green-100', 'text-green-800');
+                // Auto-hide success message after 5 seconds
                 setTimeout(() => {
-                    formStatus.style.display = 'none';
+                    formStatus.classList.add('hidden');
                 }, 5000);
+            } else {
+                formStatus.classList.add('bg-red-100', 'text-red-800');
             }
         }
     }
 
     function setFormLoading(loading) {
-        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoader = submitBtn.querySelector('.btn-loader');
+        
         if (loading) {
-            form.classList.add('loading');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.classList.add('hidden');
+            btnLoader.classList.remove('hidden');
         } else {
-            form.classList.remove('loading');
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            btnText.classList.remove('hidden');
+            btnLoader.classList.add('hidden');
         }
     }
 
@@ -310,26 +357,27 @@
 
     // Scroll Effects
     function setupScrollEffects() {
-        // Navbar background on scroll
-        window.addEventListener('scroll', handleNavbarScroll);
-        
-        // Scroll to top button (if you want to add one later)
+        // Navbar background on scroll (already handled by Tailwind classes)
         window.addEventListener('scroll', debounce(handleScroll, 100));
     }
 
-    function handleNavbarScroll() {
-        if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.backgroundColor = 'var(--background-color)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        }
+    function handleScroll() {
+        // Update active navigation
+        updateActiveNavLink();
     }
 
-    function handleScroll() {
-        // Add any additional scroll effects here
-        // For example, show/hide scroll to top button
+    // Back to top functionality
+    function setupBackToTop() {
+        const backToTopLinks = document.querySelectorAll('a[href="#home"]');
+        backToTopLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
     }
 
     // Animations

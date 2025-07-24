@@ -1,118 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rizwan Ullah - Aspiring Front-End Developer & DevOps Learner</title>
     <meta name="description" content="Portfolio of Rizwan Ullah, a self-taught developer from Karachi, Pakistan specializing in front-end development and learning DevOps.">
     
-    <!-- External Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span>Rizwan Ullah</span>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#education" class="nav-link">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="nav-controls">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger" id="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+                        Rizwan Ullah
+                    </a>
                 </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors duration-200">Home</a>
+                        <a href="#education" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors duration-200">Education</a>
+                        <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors duration-200">Skills</a>
+                        <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors duration-200">Projects</a>
+                        <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Theme Toggle & Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
+                            <span class="sr-only">Open main menu</span>
+                            <i class="fas fa-bars text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+                <a href="#home" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">Home</a>
+                <a href="#education" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">Education</a>
+                <a href="#skills" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">Skills</a>
+                <a href="#projects" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">Projects</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content" data-aos="fade-up">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Rizwan Ullah</span>
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-primary-500/10 rounded-full animate-float"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-purple-500/10 rounded-full animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-40 left-20 w-12 h-12 bg-blue-500/10 rounded-full animate-float" style="animation-delay: 4s;"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+                <!-- Profile Image Placeholder -->
+                <div class="mb-8 flex justify-center">
+                    <div class="relative">
+                        <div class="w-32 h-32 bg-gradient-to-br from-primary-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
+                            RU
+                        </div>
+                        <div class="absolute -inset-2 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full opacity-20 animate-pulse-slow"></div>
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    Hi, I'm 
+                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-primary-800 bg-clip-text text-transparent animate-gradient">
+                        Rizwan Ullah
+                    </span>
                 </h1>
-                <h2 class="hero-subtitle">Aspiring Front-End Developer & DevOps Learner</h2>
-                <p class="hero-description">
+                
+                <h2 class="text-xl md:text-2xl font-medium text-gray-600 dark:text-gray-300 mb-8">
+                    Aspiring Front-End Developer & DevOps Learner
+                </h2>
+                
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
                     Self-taught developer with a diploma in software engineering from Aptech Pakistan. 
                     Focused on building real-world web apps and currently learning DevOps while managing 
                     a growing YouTube presence.
                 </p>
-                <div class="hero-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Karachi, Pakistan</span>
+                
+                <!-- Info Cards -->
+                <div class="flex flex-wrap justify-center gap-6 mb-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-3 bg-white dark:bg-gray-800 px-6 py-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
+                        <i class="fas fa-map-marker-alt text-primary-500"></i>
+                        <span class="text-gray-700 dark:text-gray-300">Karachi, Pakistan</span>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>rizwan.ullah.tech@gmail.com</span>
+                    <div class="flex items-center gap-3 bg-white dark:bg-gray-800 px-6 py-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
+                        <i class="fas fa-envelope text-primary-500"></i>
+                        <span class="text-gray-700 dark:text-gray-300">rizwan.ullah.tech@gmail.com</span>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <span>03402138959</span>
+                    <div class="flex items-center gap-3 bg-white dark:bg-gray-800 px-6 py-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
+                        <i class="fas fa-phone text-primary-500"></i>
+                        <span class="text-gray-700 dark:text-gray-300">03402138959</span>
                     </div>
                 </div>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
-                </div>
-                <div class="social-links">
-                    <a href="#" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#contact" class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Get In Touch
                     </a>
-                    <a href="#" class="social-link" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link" title="YouTube">
-                        <i class="fab fa-youtube"></i>
+                    <a href="#projects" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-600 hover:text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-code mr-2"></i>
+                        View Projects
                     </a>
                 </div>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#" class="group flex items-center justify-center w-14 h-14 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full shadow-lg hover:shadow-xl hover:bg-primary-500 hover:text-white transform hover:-translate-y-2 transition-all duration-300">
+                        <i class="fab fa-linkedin-in text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    </a>
+                    <a href="#" class="group flex items-center justify-center w-14 h-14 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-800 hover:text-white transform hover:-translate-y-2 transition-all duration-300">
+                        <i class="fab fa-github text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    </a>
+                    <a href="#" class="group flex items-center justify-center w-14 h-14 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full shadow-lg hover:shadow-xl hover:bg-red-500 hover:text-white transform hover:-translate-y-2 transition-all duration-300">
+                        <i class="fab fa-youtube text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2 animate-pulse"></div>
             </div>
         </div>
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Education</h2>
-            <div class="education-content" data-aos="fade-up" data-aos-delay="200">
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="education-info">
-                        <h3>Diploma in Software Engineering</h3>
-                        <h4>Aptech Pakistan</h4>
-                        <p class="duration">Duration: <span class="editable">[Edit Duration Here]</span></p>
-                        <p class="description">
-                            Comprehensive program covering software development fundamentals, 
-                            programming languages, and industry best practices.
-                        </p>
+    <section id="education" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" data-aos="fade-up">
+                    Education
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 md:p-12 hover:shadow-2xl transition-shadow duration-300">
+                    <!-- Background decoration -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-purple-600/10 rounded-full -mr-16 -mt-16"></div>
+                    
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                        <!-- Icon -->
+                        <div class="flex-shrink-0">
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-primary-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                                <i class="fas fa-graduation-cap text-white text-2xl md:text-3xl"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                                Diploma in Software Engineering
+                            </h3>
+                            <h4 class="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-4">
+                                Aptech Pakistan
+                            </h4>
+                            <div class="inline-block bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 mb-6">
+                                <span class="text-gray-600 dark:text-gray-400">Duration: </span>
+                                <span class="text-primary-600 dark:text-primary-400 font-medium">[Edit Duration Here]</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                Comprehensive program covering software development fundamentals, 
+                                programming languages, and industry best practices. Gained hands-on 
+                                experience in modern development methodologies and real-world project implementation.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,101 +254,112 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Skills & Technologies</h2>
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" data-aos="fade-up">
+                    Skills & Technologies
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-600 mx-auto rounded-full"></div>
+            </div>
             
-            <div class="skills-categories">
+            <div class="grid gap-8 max-w-6xl mx-auto">
                 <!-- Confident Skills -->
-                <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="category-title">
-                        <i class="fas fa-check-circle"></i>
-                        Confident Skills
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML</span>
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check-circle text-white text-xl"></i>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS</span>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Confident Skills</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center hover:bg-gradient-to-br hover:from-orange-500 hover:to-red-600 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-html5 text-4xl mb-4 text-orange-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">HTML</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js-square"></i>
-                            <span>JavaScript</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center hover:bg-gradient-to-br hover:from-blue-500 hover:to-blue-700 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-css3-alt text-4xl mb-4 text-blue-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">CSS</span>
+                        </div>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-6 text-center hover:bg-gradient-to-br hover:from-yellow-400 hover:to-yellow-600 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-js-square text-4xl mb-4 text-yellow-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">JavaScript</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Currently Improving -->
-                <div class="skills-category" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="category-title">
-                        <i class="fas fa-flask"></i>
-                        Currently Improving
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <i class="fab fa-php"></i>
-                            <span>PHP</span>
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-flask text-white text-xl"></i>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>MySQL</span>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Currently Improving</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-purple-600 hover:to-indigo-700 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-php text-3xl mb-2 text-purple-600 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">PHP</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-laravel"></i>
-                            <span>Laravel 8</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-blue-600 hover:to-blue-800 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-database text-3xl mb-2 text-blue-600 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">MySQL</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-red-500 hover:to-red-700 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-laravel text-3xl mb-2 text-red-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">Laravel 8</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>C# (.NET MVC)</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-blue-400 hover:to-yellow-500 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-python text-3xl mb-2 text-blue-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">Python</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-wordpress"></i>
-                            <span>WordPress</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-code text-3xl mb-2 text-purple-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">C# (.NET)</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-figma"></i>
-                            <span>Figma</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-blue-500 hover:to-blue-700 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-wordpress text-3xl mb-2 text-blue-600 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">WordPress</span>
+                        </div>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-600 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-figma text-3xl mb-2 text-purple-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">Figma</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tools -->
-                <div class="skills-category" data-aos="fade-up" data-aos-delay="600">
-                    <h3 class="category-title">
-                        <i class="fas fa-tools"></i>
-                        Tools & Software
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>VS Code</span>
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-tools text-white text-xl"></i>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server"></i>
-                            <span>XAMPP</span>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Tools & Software</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-blue-500 hover:to-blue-700 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-code text-3xl mb-2 text-blue-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">VS Code</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Git & GitHub</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-orange-500 hover:to-red-600 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-server text-3xl mb-2 text-orange-500 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">XAMPP</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-file-word"></i>
-                            <span>MS Word</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-900 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fab fa-git-alt text-3xl mb-2 text-gray-700 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">Git & GitHub</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-file-excel"></i>
-                            <span>MS Excel</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-blue-600 hover:to-blue-800 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-file-word text-3xl mb-2 text-blue-600 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">MS Word</span>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-file-powerpoint"></i>
-                            <span>MS PowerPoint</span>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-green-600 hover:to-green-800 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-file-excel text-3xl mb-2 text-green-600 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">MS Excel</span>
+                        </div>
+                        <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-red-600 hover:to-orange-600 hover:text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+                            <i class="fas fa-file-powerpoint text-3xl mb-2 text-red-600 group-hover:text-white transition-colors duration-300"></i>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover:text-white">PowerPoint</span>
                         </div>
                     </div>
                 </div>
@@ -223,71 +368,109 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+    <section id="projects" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" data-aos="fade-up">
+                    Featured Projects
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-600 mx-auto rounded-full"></div>
+                <p class="text-xl text-gray-600 dark:text-gray-400 mt-6 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    Here are some of my recent projects that showcase my skills and passion for development
+                </p>
+            </div>
             
-            <div class="projects-grid">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 <!-- Product Management System -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-image"></i>
-                            <span>Screenshot Placeholder</span>
+                <div class="group bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Project Image -->
+                    <div class="relative h-48 bg-gradient-to-br from-blue-500/10 to-purple-600/10 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 group-hover:from-blue-500/30 group-hover:to-purple-600/30 transition-all duration-300"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
+                                <i class="fas fa-cogs text-white text-2xl"></i>
+                            </div>
+                            <span class="text-gray-600 dark:text-gray-400 font-medium">Screenshot Coming Soon</span>
                         </div>
+                        <!-- Floating decoration -->
+                        <div class="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full animate-pulse"></div>
                     </div>
-                    <div class="project-content">
-                        <h3>Product Management System</h3>
-                        <p>
+                    
+                    <!-- Project Content -->
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            Product Management System
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                             A comprehensive product management system built using PHP, MySQL, HTML, CSS, and JavaScript. 
                             Features functional CRUD operations, import/export capabilities, and modular code structure.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                        
+                        <!-- Tech Stack -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">PHP</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">MySQL</span>
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium">HTML</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">CSS</span>
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium">JavaScript</span>
                         </div>
-                        <div class="project-status">
-                            <span class="status-badge ready">Ready for GitHub</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
+                        
+                        <!-- Status & Links -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-green-600 dark:text-green-400 font-semibold">Ready for GitHub</span>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors duration-200">
                                 <i class="fab fa-github"></i>
-                                GitHub Link (Coming Soon)
+                                <span>Coming Soon</span>
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Portfolio Website -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-globe"></i>
-                            <span>Live Website</span>
+                <div class="group bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <!-- Project Image -->
+                    <div class="relative h-48 bg-gradient-to-br from-green-500/10 to-blue-600/10 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-600/20 group-hover:from-green-500/30 group-hover:to-blue-600/30 transition-all duration-300"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
+                                <i class="fas fa-globe text-white text-2xl"></i>
+                            </div>
+                            <span class="text-gray-600 dark:text-gray-400 font-medium">Live Website</span>
                         </div>
+                        <!-- Floating decoration -->
+                        <div class="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-green-500/20 to-blue-600/20 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
                     </div>
-                    <div class="project-content">
-                        <h3>Portfolio Website</h3>
-                        <p>
+                    
+                    <!-- Project Content -->
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            Portfolio Website
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                             This responsive portfolio website was built to showcase my growing skill set and projects. 
-                            Features modern design, dark/light theme toggle, and smooth animations.
+                            Features modern design with Tailwind CSS, dark/light theme toggle, and smooth animations.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">PHP</span>
+                        
+                        <!-- Tech Stack -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium">HTML</span>
+                            <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm font-medium">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">Flask</span>
                         </div>
-                        <div class="project-status">
-                            <span class="status-badge progress">In Progress</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
+                        
+                        <!-- Status & Links -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
+                                <span class="text-yellow-600 dark:text-yellow-400 font-semibold">In Progress</span>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors duration-200">
                                 <i class="fas fa-external-link-alt"></i>
-                                View Live Site
+                                <span>View Live Site</span>
                             </a>
                         </div>
                     </div>
@@ -297,88 +480,182 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
-            <p class="section-description" data-aos="fade-up" data-aos-delay="200">
-                I'm always open to discussing new opportunities and collaborations. 
-                Feel free to reach out if you'd like to work together!
-            </p>
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4" data-aos="fade-up">
+                    Get In Touch
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-600 mx-auto rounded-full"></div>
+                <p class="text-xl text-gray-600 dark:text-gray-400 mt-6 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    I'm always open to discussing new opportunities and collaborations. 
+                    Feel free to reach out if you'd like to work together!
+                </p>
+            </div>
             
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right" data-aos-delay="400">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>rizwan.ullah.tech@gmail.com</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Information -->
+                <div class="space-y-8" data-aos="fade-right" data-aos-delay="400">
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Email</h4>
+                                    <a href="mailto:rizwan.ullah.tech@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                                        rizwan.ullah.tech@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Phone -->
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-phone text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Phone</h4>
+                                    <a href="tel:+923402138959" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                                        +92 340 2138959
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Location -->
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Location</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Karachi, Pakistan</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>03402138959</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Karachi, Pakistan</p>
+                        
+                        <!-- Social Links -->
+                        <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="group w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-all duration-200">
+                                    <i class="fab fa-linkedin-in group-hover:scale-110 transition-transform duration-200"></i>
+                                </a>
+                                <a href="#" class="group w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-800 hover:text-white transition-all duration-200">
+                                    <i class="fab fa-github group-hover:scale-110 transition-transform duration-200"></i>
+                                </a>
+                                <a href="#" class="group w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-500 hover:text-white transition-all duration-200">
+                                    <i class="fab fa-youtube group-hover:scale-110 transition-transform duration-200"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <form class="contact-form" id="contact-form" data-aos="fade-left" data-aos-delay="600">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                        <span class="error-message" id="name-error"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                        <span class="error-message" id="email-error"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
-                        <span class="error-message" id="message-error"></span>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary" id="submit-btn">
-                        <span class="btn-text">Send Message</span>
-                        <span class="btn-loader" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </span>
-                    </button>
-                    
-                    <div class="form-status" id="form-status"></div>
-                </form>
+                <!-- Contact Form -->
+                <div data-aos="fade-left" data-aos-delay="600">
+                    <form class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8" id="contact-form">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Send a Message</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Name Field -->
+                            <div>
+                                <label for="name" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Full Name *</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                                    placeholder="Enter your full name"
+                                >
+                                <span class="text-red-500 text-sm hidden" id="name-error"></span>
+                            </div>
+                            
+                            <!-- Email Field -->
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Email Address *</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                                    placeholder="Enter your email address"
+                                >
+                                <span class="text-red-500 text-sm hidden" id="email-error"></span>
+                            </div>
+                            
+                            <!-- Message Field -->
+                            <div>
+                                <label for="message" class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Message *</label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    rows="6" 
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 resize-none"
+                                    placeholder="Tell me about your project or how I can help you..."
+                                ></textarea>
+                                <span class="text-red-500 text-sm hidden" id="message-error"></span>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <button 
+                                type="submit" 
+                                id="submit-btn"
+                                class="w-full bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3"
+                            >
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="btn-loader hidden">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+                            
+                            <!-- Form Status -->
+                            <div id="form-status" class="hidden p-4 rounded-lg text-center font-medium"></div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Rizwan Ullah. All rights reserved.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
+    <footer class="bg-gray-900 dark:bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                        Rizwan Ullah
+                    </h3>
+                    <p class="text-gray-400">&copy; 2025 Rizwan Ullah. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-500 transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-linkedin-in text-gray-400 group-hover:text-white transition-colors duration-300"></i>
                     </a>
-                    <a href="#" class="social-link" title="GitHub">
-                        <i class="fab fa-github"></i>
+                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-github text-gray-400 group-hover:text-white transition-colors duration-300"></i>
                     </a>
-                    <a href="#" class="social-link" title="YouTube">
-                        <i class="fab fa-youtube"></i>
+                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-youtube text-gray-400 group-hover:text-white transition-colors duration-300"></i>
                     </a>
                 </div>
+            </div>
+            
+            <!-- Back to top button -->
+            <div class="text-center mt-8 pt-8 border-t border-gray-800">
+                <a href="#home" class="inline-flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors duration-200">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Back to top</span>
+                </a>
             </div>
         </div>
     </footer>
