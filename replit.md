@@ -121,7 +121,10 @@ Preferred communication style: Simple, everyday language.
 ├── index.html                 # Main HTML file with Tailwind CSS
 ├── main.py                    # Flask application entry point
 ├── contact.php               # Contact form handler
+├── HOW_TO_ADD_PHOTOS.md      # Instructions for adding personal photos
 ├── assets/
+│   ├── images/               # Photo storage folder
+│   │   └── README.md        # Photo upload guidelines
 │   └── js/
 │       └── app.js            # Modern JavaScript with Tailwind integration
 └── attached_assets/
@@ -146,3 +149,5 @@ Preferred communication style: Simple, everyday language.
 - **Modern Components**: Redesigned hero section, skills cards, project cards, and contact form
 - **Dark Mode Enhancement**: Upgraded to Tailwind's native dark mode system
 - **JavaScript Modernization**: Updated JavaScript to work with Tailwind classes and modern patterns
+- **Photo Integration**: Added support for personal photos including profile picture and project screenshots
+- **Image System**: Created assets/images folder with smart fallbacks and responsive image handling
