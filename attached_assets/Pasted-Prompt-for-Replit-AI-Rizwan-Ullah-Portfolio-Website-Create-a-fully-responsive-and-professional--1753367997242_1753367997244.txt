@@ -1,0 +1,87 @@
+Prompt for Replit AI - Rizwan Ullah Portfolio Website
+
+Create a fully responsive and professional-looking portfolio website for a beginner-to-intermediate web developer named Rizwan Ullah from Pakistan. The site should be clean, modern, and easy to edit. It must include the following sections and details:
+
+---
+
+👤 Personal Info (Homepage or Hero Section)
+- Name: Rizwan Ullah
+- Title: Aspiring Front-End Developer & DevOps Learner
+- Short Bio: Self-taught developer with a diploma in software engineering from Aptech Pakistan. Focused on building real-world web apps and currently learning DevOps while managing a growing YouTube presence.
+- Location: Karachi, Pakistan
+- Contact Info:
+  - Email: rizwan.ullah.tech@gmail.com
+  - Phone: 03402138959
+
+---
+
+📚 Education
+- Diploma in Software Engineering
+  - Institute: Aptech Pakistan
+  - Duration: [Leave space for Rizwan to edit]
+
+---
+
+💼 Skills
+List the following skills in categorized format:
+
+✅ Confident Skills:
+- HTML
+- CSS
+- JavaScript
+
+🧪 Currently Improving:
+- PHP
+- MySQL
+- Laravel 8
+- Python
+- C# (.NET MVC)
+- WordPress
+- Figma
+
+📊 Tools:
+- VS Code
+- XAMPP
+- Git & GitHub
+- Microsoft Word, Excel, PowerPoint
+
+---
+
+💻 Projects (with space for links/screenshots)
+Add a section for featured projects with placeholder text or embedded links:
+
+Product Management System
+- Built using PHP, MySQL, HTML, CSS, JS
+- Functional CRUD, import/export, and modular code
+- Status: Ready for GitHub
+- [Add Screenshot Placeholder + GitHub Link Placeholder]
+
+Portfolio Website (This One)
+- This portfolio was built to showcase Rizwan's growing skill set.
+- Status: In Progress
+
+---
+
+📱 Contact Section
+- Include a contact form with Name, Email, and Message fields.
+- Make the form functional using PHP backend so it sends the form submissions directly to rizwan.ullah.tech@gmail.com.
+- Add basic validation (required fields) and confirmation message on submit.
+
+---
+
+🧠 Optional Add-ons (If AI wants to improve)
+- Add social media links (LinkedIn, YouTube, GitHub)
+- Create a dark/light theme toggle
+- Add animations using AOS.js or simple fade-in/fade-out
+- Optional blog section where Rizwan can post about DevOps, SEO, or YouTube
+
+---
+
+The full site must be:
+- ✅ Mobile-friendly
+- ✅ Built with only HTML, CSS, and JS (no frameworks)
+- ✅ Easy to update (separate CSS and JS files)
+- ✅ Use Replit’s file structure and preview system
+
+🔧 Please generate all necessary folders and files in the right structure:
+/index.html, /assets/css/style.css, /assets/js/app.js, and placeholder folders like /projects/ or /images/
