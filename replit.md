@@ -120,15 +120,15 @@ Preferred communication style: Simple, everyday language.
 /
 ├── index.html                 # Main HTML file with Tailwind CSS
 ├── main.py                    # Flask application entry point
-├── contact.php               # Contact form handler
 ├── HOW_TO_ADD_PHOTOS.md      # Instructions for adding personal photos
+├── replit.md                 # Project documentation and architecture
 ├── assets/
 │   ├── images/               # Photo storage folder
 │   │   └── README.md        # Photo upload guidelines
 │   └── js/
 │       └── app.js            # Modern JavaScript with Tailwind integration
 └── attached_assets/
-    └── requirements.txt       # Project requirements and specifications
+    └── requirements.txt       # Original project requirements
 ```
 
 ## Development Notes
@@ -151,3 +151,4 @@ Preferred communication style: Simple, everyday language.
 - **JavaScript Modernization**: Updated JavaScript to work with Tailwind classes and modern patterns
 - **Photo Integration**: Added support for personal photos including profile picture and project screenshots
 - **Image System**: Created assets/images folder with smart fallbacks and responsive image handling
+- **Project Cleanup**: Removed unused files (old CSS, contact.php, empty folders) to keep project organized
